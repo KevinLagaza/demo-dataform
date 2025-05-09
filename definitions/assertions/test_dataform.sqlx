@@ -1,0 +1,14 @@
+config {
+  type: "assertion",
+  name: 'custom_test',
+  schema: "data_quality",  // Schema to create assertion in
+  tags: ["critical", "nightly"],
+  dependencies: ['test_view'],
+  description: "Validates customer email formats",
+  
+}
+
+--severity: "ERROR"  // or "WARNING"
+
+SELECT * from ${ref("test_view")}
+where num < 0
