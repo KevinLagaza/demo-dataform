@@ -3,6 +3,6 @@ config {
         dependencies: ['dataform_test_view_assertions_rowConditions','custom_test']
  }
 
--- This step depends on the assertion mentioned in second_view.sqlx
+-- This step depends on the assertion mentioned in second_view.sqlx and custom_test in test_dataform.sqlx
 
 truncate table ${ref("test")}
