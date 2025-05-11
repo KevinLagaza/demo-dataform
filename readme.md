@@ -6,6 +6,6 @@
 
 ## Step 2: Compile and run the project
 
-- `***dataform compile***`
-- `***dataform run --dry-run***`
-- `***dataform run***`
+- ***`dataform compile`***
+- ***`dataform run --dry-run`***
+- ***`dataform run`***
