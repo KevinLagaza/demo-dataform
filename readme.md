@@ -1,6 +1,6 @@
 
-- how to use dataform locally
+# how to use dataform locally
 
-***dataform compile***
-***dataform run --dry-run***
-***dataform run***
+- ***dataform compile***
+- ***dataform run --dry-run***
+- ***dataform run***
