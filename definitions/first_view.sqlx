@@ -2,7 +2,11 @@ config {
     type: "table", // Creates a table in BigQuery. It can be "view" as well.
     name: 'test',
     //disabled: true, // To disable or not the table creation
-    columns: docs.num // Column descriptions are pushed to BigQuery.
+    columns: docs.num, // Column descriptions are pushed to BigQuery.
+    tags: ["test", "demo"],
+    assertions: {
+    nonNull: ["num"],
+  }
 }
 
   -- This is an example SQLX file to help you learn the basics of Dataform.
@@ -10,28 +14,27 @@ config {
   -- You can delete this file, then commit and push your changes to your repository when you are ready.
   -- Config blocks allow you to configure, document, and test your data assets.
   -- The rest of a SQLX file contains your SELECT statement used to create the table.
-
--- Actions to be performed before the creation of the table 
-pre_operations {
-  CREATE TEMP FUNCTION AddFourAndDivide(x INT64, y INT64)
-    RETURNS FLOAT64
-    AS ((x + 4) / y);
-}
- 
+  -- Actions to be performed before the creation of the table
 SELECT
   1 AS num
-union all 
+UNION ALL
 SELECT
   2 AS num
-union all 
+UNION ALL
 SELECT
-  3 AS num
-;
+  3 AS num ;
+  -- Actions to be performed after the creation of the table
 
--- Actions to be performed after the creation of the table
+pre_operations {
+  CREATE TEMP FUNCTION
+    AddFourAndDivide(x INT64,
+      y INT64)
+    RETURNS FLOAT64 AS ((x + 4) / y);
+}
+
 post_operations {
   GRANT `roles/bigquery.dataViewer`
   ON
-  TABLE ${self()}
-  TO "group:allusers@example.com", "user:otheruser@example.com"
+    TABLE ${self()} TO "group:allusers@example.com",
+    "user:otheruser@example.com"
 }

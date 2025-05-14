@@ -9,4 +9,5 @@ config {
  }
 
 -- To make the name of the output table match the name of the operations file, you can use the self function in the CREATE operation.
+-- Otherwise, it cannot be referenced by other SQL workflow objects
 CREATE OR REPLACE VIEW ${self()} AS (SELECT 1 AS TEST)
