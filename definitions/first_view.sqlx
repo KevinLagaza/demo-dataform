@@ -1,9 +1,7 @@
 config {
     type: "table", // Creates a table in BigQuery. It can be "view" as well.
     name: 'test',
-    columns: {
-        num: "A description for the test column", // Column descriptions are pushed to BigQuery.
-    }
+    columns: docs.num // Column descriptions are pushed to BigQuery.
 }
 
   -- This is an example SQLX file to help you learn the basics of Dataform.
