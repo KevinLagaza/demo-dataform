@@ -1,6 +1,7 @@
 config {
     type: "table", // Creates a table in BigQuery. It can be "view" as well.
     name: 'test',
+    //disabled: true, // To disable or not the table creation
     columns: docs.num // Column descriptions are pushed to BigQuery.
 }
 
@@ -25,3 +26,12 @@ SELECT
 union all 
 SELECT
   3 AS num
+;
+
+-- Actions to be performed after the creation of the table
+post_operations {
+  GRANT `roles/bigquery.dataViewer`
+  ON
+  TABLE ${self()}
+  TO "group:allusers@example.com", "user:otheruser@example.com"
+}
