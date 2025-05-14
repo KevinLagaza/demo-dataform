@@ -9,6 +9,13 @@ config {
   -- You can delete this file, then commit and push your changes to your repository when you are ready.
   -- Config blocks allow you to configure, document, and test your data assets.
   -- The rest of a SQLX file contains your SELECT statement used to create the table.
+
+-- Actions to be performed before the creation of the table 
+pre_operations {
+  CREATE TEMP FUNCTION AddFourAndDivide(x INT64, y INT64)
+    RETURNS FLOAT64
+    AS ((x + 4) / y);
+}
  
 SELECT
   1 AS num
