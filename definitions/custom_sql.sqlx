@@ -1,0 +1,12 @@
+
+-- Use the ref() function to manage dependencies.
+-- Learn more about ref() and other built in functions here: https://cloud.google.com/dataform/docs/dataform-core
+
+config { 
+        type: "operations",
+        description : 'A custom sql query',
+        hasOutput: true
+ }
+
+-- To make the name of the output table match the name of the operations file, you can use the self function in the CREATE operation.
+CREATE OR REPLACE VIEW ${self()} AS (SELECT 1 AS TEST)
