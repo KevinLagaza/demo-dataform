@@ -15,6 +15,15 @@ config {
   -- Config blocks allow you to configure, document, and test your data assets.
   -- The rest of a SQLX file contains your SELECT statement used to create the table.
   -- Actions to be performed before the creation of the table
+
+-- Actions to be performed before the creation of the table
+pre_operations {
+  CREATE TEMP FUNCTION
+    AddFourAndDivide(x INT64,
+      y INT64)
+    RETURNS FLOAT64 AS ((x + 4) / y);
+}
+
 SELECT
   1 AS num
 UNION ALL
@@ -23,15 +32,8 @@ SELECT
 UNION ALL
 SELECT
   3 AS num ;
-  -- Actions to be performed after the creation of the table
 
-pre_operations {
-  CREATE TEMP FUNCTION
-    AddFourAndDivide(x INT64,
-      y INT64)
-    RETURNS FLOAT64 AS ((x + 4) / y);
-}
-
+-- Actions to be performed after the creation of the table
 post_operations {
   GRANT `roles/bigquery.dataViewer`
   ON
